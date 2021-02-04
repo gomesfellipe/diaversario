@@ -5,6 +5,6 @@ account: gomes555
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3579664
-bundleId: 4178668
+bundleId: 4178752
 url: https://gomes555.shinyapps.io/diaversario/
-when: 1612411935.66758
+when: 1612413240.98714

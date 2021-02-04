@@ -5,45 +5,45 @@ library(shinyWidgets)
 library(shinydashboardPlus)
 library(vov)
 
-ui <- fluidPage(
-    use_vov(),
-    useShinyjs(),
-    setBackgroundImage(
-        src = "https://images.clipartlogo.com/files/istock/previews/9382/93824905-color-glossy-happy-birthday-balloons-banner-background-vector.jpg"
-    ),
-    tags$head(tags$link(rel = "stylesheet", type = "text/css",
-                        href = "infobox.css")),
-    theme = bslib::bs_theme(version = 4, bootswatch = "sketchy"),
-
-    titlePanel(vov::fade_in_down(div("Qual sua idade em dias?"))),
-
-    sidebarLayout(
-        sidebarPanel(
-            dateInput("born",
-                      "Informe sua data de nascimento:",
-                      value = Sys.Date()),
-            actionButton(inputId = "button", label = "Calcular!"),
-            helpText("Nenhum dado é armazenado.", br(),
-            "Código aberto, confira ", tags$a(href="https://www.github.com/gomesfellipe/diaversario", "aqui"))
-        )
-        ,
-        
-        mainPanel(
-            uiOutput("frame"),
-            uiOutput("n_day"), br(),
-            uiOutput("n_10000"), br(),
-            uiOutput("day_10000"), br()
-
-        )
-    ),
-    br(),
-    div(style = 'font-size: 8pt; color: #5c5b5f; text-align:left',
-        tags$em("By", tags$a(href="github.com/gomesfellipe", "Fellipe Gomes"), 
-                   " - 2021"),
-        socialButton(url = "https://www.linkedin.com/in/gomesfellipe/", type = "linkedin"),
-        socialButton(url = "http://github.com/gomesfellipe", type = "github"),
-        socialButton(url = "https://medium.com/@gomesfellipe", type = "medium"),
-        socialButton(url = "https://www.kaggle.com/gomes555", type = "kaggle"))
+ui <- fluidPage(title = "diaversario",
+                use_vov(),
+                useShinyjs(),
+                setBackgroundImage(
+                    src = "https://images.clipartlogo.com/files/istock/previews/9382/93824905-color-glossy-happy-birthday-balloons-banner-background-vector.jpg"
+                ),
+                tags$head(tags$link(rel = "stylesheet", type = "text/css",
+                                    href = "infobox.css")),
+                theme = bslib::bs_theme(version = 4, bootswatch = "sketchy"),
+                
+                titlePanel(vov::fade_in_down(div("Qual sua idade em dias?"))),
+                
+                sidebarLayout(
+                    sidebarPanel(
+                        dateInput("born",
+                                  "Informe sua data de nascimento:",
+                                  value = Sys.Date()),
+                        actionButton(inputId = "button", label = "Calcular!"),
+                        helpText("Nenhum dado é armazenado.", br(),
+                                 "Código aberto, confira ", tags$a(href="https://www.github.com/gomesfellipe/diaversario", "aqui"))
+                    )
+                    ,
+                    
+                    mainPanel(
+                        uiOutput("frame"),
+                        uiOutput("n_day"), br(),
+                        uiOutput("n_10000"), br(),
+                        uiOutput("day_10000"), br()
+                        
+                    )
+                ),
+                br(),
+                div(style = 'font-size: 8pt; color: #5c5b5f; text-align:left',
+                    tags$em("By", tags$a(href="https://gomesfellipe.github.io/", "Fellipe Gomes"), 
+                            " - 2021"),
+                    socialButton(url = "https://www.linkedin.com/in/gomesfellipe/", type = "linkedin"),
+                    socialButton(url = "http://github.com/gomesfellipe", type = "github"),
+                    socialButton(url = "https://medium.com/@gomesfellipe", type = "medium"),
+                    socialButton(url = "https://www.kaggle.com/gomes555", type = "kaggle"))
 )
 
 server <- function(input, output, session) {  
@@ -51,14 +51,14 @@ server <- function(input, output, session) {
     observeEvent(input$button, {
         hide("frame")
     })
-
+    
     output$frame <- renderUI({
         url = "https://giphy.com/embed/dyjL2vi0AocEEE6ZkA"
         my_test <- tags$iframe(src=url, height=100, width=200, frameBorder=0)
         print(my_test)
         my_test
     })
-
+    
     observeEvent(input$button, {
         
         if(input$born != Sys.Date()){
@@ -114,7 +114,7 @@ server <- function(input, output, session) {
                 text = "Insira data de nascimento!",
                 type = "error")
         }
-
+        
     })
     
 }
