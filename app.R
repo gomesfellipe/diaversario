@@ -8,6 +8,9 @@ library(vov)
 ui <- fluidPage(
     use_vov(),
     useShinyjs(),
+    setBackgroundImage(
+        src = "https://images.clipartlogo.com/files/istock/previews/9382/93824905-color-glossy-happy-birthday-balloons-banner-background-vector.jpg"
+    ),
     tags$head(tags$link(rel = "stylesheet", type = "text/css",
                         href = "infobox.css")),
     theme = bslib::bs_theme(version = 4, bootswatch = "sketchy"),
@@ -33,7 +36,7 @@ ui <- fluidPage(
 
         )
     ),
-    hr(),
+    br(),
     div(style = 'font-size: 8pt; color: #5c5b5f; text-align:left',
         tags$em("By", tags$a(href="github.com/gomesfellipe", "Fellipe Gomes"), 
                    " - 2021"),
@@ -67,7 +70,7 @@ server <- function(input, output, session) {
                 n = difftime(Sys.Date(), input$born)
                 
                 infoBox(title = "", glue::glue("Você tem {n} dias de vida!"), 
-                        icon = icon("birthday-cake"), color = "yellow", width = 12, )
+                        icon = icon("birthday-cake"), color = "yellow", width = 6, )
             })
             
             # completa 10.000 dias de vida em:
@@ -84,7 +87,7 @@ server <- function(input, output, session) {
                 }
                 
                 infoBox(title = "", txt,
-                        icon = icon("calendar", lib = "glyphicon"), color = "yellow", width = 12)   
+                        icon = icon("calendar", lib = "glyphicon"), color = "yellow", width = 6)   
             })
             
             # Faltam quantos dias para 10000?
@@ -97,11 +100,11 @@ server <- function(input, output, session) {
                 if(input$born < Sys.Date() - lubridate::days(10000)){
                     txt <- "Parabéns!"
                 }else{
-                    txt <- glue::glue("Faltam {day} dias para seu 10000 diaversário!")
+                    txt <- glue::glue("Faltam {format(day, big.mark='.', decimal.mark=',')} dias para seu 10.000 diaversário!")
                 }
                 
                 infoBox(title = "", txt,
-                        icon = icon("clock"), color = "yellow", width = 12)
+                        icon = icon("clock"), color = "yellow", width = 6)
             })
             
         }else{
