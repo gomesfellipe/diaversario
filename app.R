@@ -23,8 +23,8 @@ ui <- fluidPage(
                       "Informe sua data de nascimento:",
                       value = Sys.Date()),
             actionButton(inputId = "button", label = "Calcular!"),
-            helpText("Nenhum dado sera armazenado.", br(),
-            "Confira o código", tags$a(href="ithub.com/gomesfellipe/diaversario", "Aqui"))
+            helpText("Nenhum dado é armazenado.", br(),
+            "Código aberto, confira ", tags$a(href="https://www.github.com/gomesfellipe/diaversario", "aqui"))
         )
         ,
         
@@ -69,7 +69,7 @@ server <- function(input, output, session) {
                 
                 n = difftime(Sys.Date(), input$born)
                 
-                infoBox(title = "", glue::glue("Você tem {n} dias de vida!"), 
+                infoBox(title = "", glue::glue("Você tem {format(as.numeric(n), big.mark='.', decimal.mark=',')} dias de vida!"), 
                         icon = icon("birthday-cake"), color = "yellow", width = 6, )
             })
             
@@ -83,7 +83,7 @@ server <- function(input, output, session) {
                 if(input$born < Sys.Date() - lubridate::days(10000)){
                     txt <- "Você já competou 10.000 dias de vida!"
                 }else{
-                    txt <- glue::glue("Completa 10.000 no dia {format(day, '%d/%m/%Y')}")
+                    txt <- glue::glue("Completará 10.000 no dia {format(day, '%d/%m/%Y')}")
                 }
                 
                 infoBox(title = "", txt,
@@ -100,7 +100,7 @@ server <- function(input, output, session) {
                 if(input$born < Sys.Date() - lubridate::days(10000)){
                     txt <- "Parabéns!"
                 }else{
-                    txt <- glue::glue("Faltam {format(day, big.mark='.', decimal.mark=',')} dias para seu 10.000 diaversário!")
+                    txt <- glue::glue("Faltam {format(as.numeric(day), big.mark='.', decimal.mark=',')} dias para seu 10.000º diaversário!")
                 }
                 
                 infoBox(title = "", txt,
