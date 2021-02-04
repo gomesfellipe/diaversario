@@ -45,4 +45,8 @@ str(born + timedelta(days=10000))
 print("Time difference of",str((born + timedelta(days=10000) - today).days), "days")
 ```
 
+# Próximos passos:
 
+Features:
+- Exibir quanto falta para o próximo diaversário de +10.000 recursivamente caso o usuário já tenha passado de 10.000
+- Incluir botão para selecionar algum dia específico?
