@@ -50,3 +50,5 @@ print("Time difference of",str((born + timedelta(days=10000) - today).days), "da
 Features:
 - Exibir quanto falta para o próximo diaversário de +10.000 recursivamente caso o usuário já tenha passado de 10.000
 - Incluir botão para selecionar algum dia específico?
+- Incluir mais estatísticas interessantes?
+- Buscar fatos curiosos no dia do nascimento da pessoa?
